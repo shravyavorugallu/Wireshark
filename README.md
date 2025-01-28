@@ -1,67 +1,89 @@
-# Wireshark
- Analyzing a different pcap files using Wireshark
+### Lab Project: Wireshark Network Traffic Analysis
 
+---
 
-Part 1: tr-chappellu.pcapng
+## Project Overview
+This lab project focuses on using Wireshark, a network protocol analyzer, to capture and analyze network traffic. By monitoring packet exchanges, you will gain insights into network protocols, packet structures, and communication patterns.
 
-a. Find the most active TCP conversation in the file (by bits per second).
+---
 
-b. What is the total amount of bytes transferred from A to B and from B to A in the
-most active TCP conversation? (Hint: right-click on the conversation, select Apply
-as Filter > Selected > A → B. Save the packets once the filter is applied)
+## Objectives
+- Understand how to capture and analyze network traffic using Wireshark.
+- Identify specific packet types, including ICMP, TCP, and UDP.
+- Observe and analyze protocol-specific details like handshakes, data transfers, and error messages.
 
-c. Calculate the Round-Trip Time (RTT) between A and B by inspecting the TCP
-Handshake.
+---
 
-d. What are selective acknowledgments? Are they permitted in this conversation?
-Please justify your answer.
+## Lab Tasks
 
+### 1. **Installing and Setting Up Wireshark**
+   - Ensure Wireshark is installed on your system.
+   - Launch Wireshark with appropriate permissions:
+     ```bash
+     sudo wireshark
+     ```
+   - Select the network interface to monitor (e.g., eth0 or wlan0).
 
-Part 2: tr-http-pcaprnet.pcapng
+---
 
-a. Use a filter to display the HTTP response time for each HTTP request.
+### 2. **Capturing Network Traffic**
+   - Start a capture session by clicking the **Start Capturing Packets** button.
+   - Perform specific network actions such as:
+     - Pinging another machine using ICMP:
+       ```bash
+       ping <IP Address>
+       ```
+     - Establishing a connection using TCP (e.g., opening a web page or SSH session).
+     - Sending a UDP-based query (e.g., DNS lookup).
 
-b. Define and explain the significance of each HTTP response status code.
+---
 
-c. Apply a filter that lists packets wherein the HTTP response time is greater than
-one second.
+### 3. **Applying Filters**
+   - Use display filters in Wireshark to narrow down traffic:
+     - ICMP packets:
+       ```plaintext
+       icmp
+       ```
+     - TCP packets:
+       ```plaintext
+       tcp
+       ```
+     - UDP packets:
+       ```plaintext
+       udp
+       ```
 
+---
 
-Part 3: tr-ftpfail.pcapng
+### 4. **Analyzing Captured Traffic**
+   - Observe the details of specific packets, such as:
+     - Source and destination IP addresses.
+     - Protocol used.
+     - Payload data.
+   - For ICMP traffic, identify request and reply messages.
+   - For TCP traffic, analyze the three-way handshake (SYN, SYN-ACK, ACK).
+   - For UDP traffic, observe DNS queries and responses.
 
-a. Use a filter to display the FTP request and response packets.
+---
 
-b. List the server and client IP addresses and port numbers.
+### 5. **Saving Captures**
+   - Save the captured data for later review:
+     ```plaintext
+     File > Save As > <filename>.pcap
+     ```
 
-c. Use another filter to display only the FTP response codes for the packets. Define
-and explain the significance of the response codes.
+---
 
-d. Is the FTP termination initiated by server or client? Please justify your answer.
+## Deliverables
+1. Saved Wireshark capture files (.pcap) demonstrating ICMP, TCP, and UDP traffic.
+2. Screenshots of packet details for each protocol type.
+3. Observations on the captured traffic, including protocol behavior and communication patterns.
 
-e. How secure is FTP?
+---
 
+## Notes
+- Ensure network interfaces are active and have traffic for meaningful captures.
+- Use filters to focus on specific traffic types.
+- Familiarize yourself with Wireshark's interface and features for efficient analysis.
 
-Part 4: tr-bootp.pcapng
-
-a. What layer of the OSI model can DHCP Discover packets be found? What type
-of packet is DHCP Discover? List the source and destination IP addresses and
-port numbers.
-
-b. How many DHCP packets are exchanged between the client and server before
-the client receives an IP address? Define and explain the commands used in the
-DHCP handshake.
-
-c. What is the significance of DHCP Release packet?
-
-d. Explain the communication flow between a DHCP client and server on a network
-that has two DHCP servers.
-
-
-Part 5: tr-nameresolution.pcapng
-
-a. Use a filter to display DNS traffic only.
-
-b. Which transport layer protocol is used for DNS queries?
-
-c. What is the response for the DNS query of packet number 1004? What is the
-reason for this response?
+---
